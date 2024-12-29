@@ -1,0 +1,6 @@
+.Shopping-cart {
+  padding-top: 30px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
