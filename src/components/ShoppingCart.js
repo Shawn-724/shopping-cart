@@ -8,7 +8,6 @@ import "../styles/ShoppingCart.css";
 const ShoppingCart = () => {
   const [quantity, setQuantity] = useState(0);
   const [quantityInCart, setQuantityInCart] = useState(0);
-
   const [selectedFulfilmentOption, setSelectedFulfilmentOption] = useState(101);
 
   const handleQuantity = (value) => {
@@ -32,6 +31,7 @@ const ShoppingCart = () => {
   };
 
   const handleUpdateCart = () => {
+    setQuantityInCart(quantity);
     console.log(
       "updateCart: \nsku:",
       `${itemData.sku},`,
