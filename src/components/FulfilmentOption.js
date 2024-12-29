@@ -9,12 +9,12 @@ const FulfilmentOption = ({ quantity, handleFulfilmentOption }) => {
   const [selectedFulfilmentOption, setSelectedFulfilmentOption] = useState(101);
 
   const onChange = (e) => {
-    console.log("radio checked", e.target.value);
     setSelectedFulfilmentOption(e.target.value);
   };
 
   useEffect(() => {
     handleFulfilmentOption(selectedFulfilmentOption);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFulfilmentOption]);
 
   const checkIfStock = () => {
@@ -31,7 +31,9 @@ const FulfilmentOption = ({ quantity, handleFulfilmentOption }) => {
         <Space
           className="Fulfilment-option"
           direction="vertical"
-          style={{ padding: "20px" }}
+          style={{
+            padding: "20px",
+          }}
         >
           <Radio value={101}>Free In-Store or Curbside Pick Up</Radio>
           <Text style={{ paddingLeft: "25px" }}>

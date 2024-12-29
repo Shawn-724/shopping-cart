@@ -22,6 +22,7 @@ const PlusMinusButton = ({ selectedFulfilmentOption, handleQuantity }) => {
 
   useEffect(() => {
     handleQuantity(quantity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   return (
@@ -59,7 +60,7 @@ const PlusMinusButton = ({ selectedFulfilmentOption, handleQuantity }) => {
             variant="outlined"
             onClick={handleIncreaseQantity}
             disabled={
-              selectedFulfilmentOption == 101
+              selectedFulfilmentOption === 101
                 ? quantity >= fulfillmentData.inStockPickUpAvailableQty
                 : quantity >= fulfillmentData.homeDeliveryAvailableQty
             }
