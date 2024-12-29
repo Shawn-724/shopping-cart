@@ -1,43 +1,56 @@
 import React, { useState } from "react";
-import { Button, Space, Typography } from "antd";
+import { Button } from "antd";
 import PlusMinusButton from "./PlusMinusButton";
-import DeliveryMethod from "./DeliveryMethod";
+import FulfilmentOption from "./FulfilmentOption";
 import { itemData } from "./MockData";
-const { Text } = Typography;
+import "../styles/ShoppingCart.css";
+
 const ShoppingCart = () => {
   const [quantity, setQuantity] = useState(0);
-  const [delivery, setDelivery] = useState("Pick Up");
+  const [selectedFulfilmentOption, setSelectedFulfilmentOption] = useState(101);
+
   const totalPrice = (quantity * itemData.retailPrice).toFixed(2);
 
   const handleQuantity = (value) => {
     setQuantity(value);
   };
 
-  const handleDeliveryMethod = (value) => {
-    setDelivery(value);
+  const handleFulfilmentOption = (value) => {
+    setSelectedFulfilmentOption(value);
   };
 
-  const handleSubmit = () => {
+  const handleUpdateCart = () => {
     console.log(
       "Quantity:",
-      quantity,
-      "Delivery Method:",
-      delivery,
+      `${quantity},`,
+      "selected Fulfilment Option:",
+      `${selectedFulfilmentOption},`,
       "and Total price:",
-      totalPrice
+      `$${totalPrice}.`
     );
   };
-  return (
-    <>
-      <Space direction="vertical">
-        <PlusMinusButton handleQuantity={handleQuantity} />
-        <DeliveryMethod handleDeliveryMethod={handleDeliveryMethod} />
 
-        <Button type="primary" onClick={handleSubmit}>
-          UPDATE CART
-        </Button>
-      </Space>
-    </>
+  return (
+    <div className="Shopping-cart">
+      <PlusMinusButton
+        handleQuantity={handleQuantity}
+        selectedFulfilmentOption={selectedFulfilmentOption}
+      />
+      <FulfilmentOption
+        quantity={quantity}
+        handleFulfilmentOption={handleFulfilmentOption}
+      />
+
+      <Button
+        type="primary"
+        style={{ marginTop: "15px", fontWeight: "bold" }}
+        color="default"
+        variant="solid"
+        onClick={handleUpdateCart}
+      >
+        {quantity > 0 ? "UPDATE CART" : "ADD TO CART"}
+      </Button>
+    </div>
   );
 };
 export default ShoppingCart;

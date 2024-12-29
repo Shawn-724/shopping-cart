@@ -1,10 +1,12 @@
 import { Button, Input, Space, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { fulfillmentData, itemData } from "./MockData";
+
 const { Text } = Typography;
 
-const PlusMinusButton = (props) => {
+const PlusMinusButton = ({ selectedFulfilmentOption, handleQuantity }) => {
   const [quantity, setQuantity] = useState(0);
+
   const totalPrice = (quantity * itemData.retailPrice).toFixed(2);
 
   const handleIncreaseQantity = () => {
@@ -19,34 +21,55 @@ const PlusMinusButton = (props) => {
   };
 
   useEffect(() => {
-    props.handleQuantity(quantity);
+    handleQuantity(quantity);
   }, [quantity]);
 
   return (
-    <>
-      <Space
-        style={{
-          size: 145,
-        }}
-      >
-        <Text>{totalPrice}</Text>
+    <Space style={{ width: "100%", justifyContent: "space-between" }}>
+      <Text style={{ fontSize: "36px", fontWeight: "bold" }}>
+        ${totalPrice}
+      </Text>
+      <Space direction="vertical" align="center">
         <Space>
-          <Button type="primary" shape="circle" onClick={handleDecreaseQantity}>
+          <Button
+            type="primary"
+            shape="circle"
+            color="grey"
+            variant="outlined"
+            onClick={handleDecreaseQantity}
+            disabled={quantity <= 0}
+          >
             &minus;
           </Button>
           <Input
             style={{
-              width: 45,
+              width: "50px",
+              fontWeight: "bold",
+              textAlign: "center",
+              borderBottom: "3px solid grey",
             }}
             value={quantity}
             onChange={handleInputValue}
           />
-          <Button type="primary" shape="circle" onClick={handleIncreaseQantity}>
+
+          <Button
+            type="primary"
+            shape="circle"
+            color="grey"
+            variant="outlined"
+            onClick={handleIncreaseQantity}
+            disabled={
+              selectedFulfilmentOption == 101
+                ? quantity >= fulfillmentData.inStockPickUpAvailableQty
+                : quantity >= fulfillmentData.homeDeliveryAvailableQty
+            }
+          >
             +
           </Button>
         </Space>
+        <Text>{`Each $${itemData.retailPrice}`}</Text>
       </Space>
-    </>
+    </Space>
   );
 };
 
