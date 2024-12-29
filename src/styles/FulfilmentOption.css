@@ -4,3 +4,8 @@
   border: 5px solid rgb(244, 244, 244);
   font-weight: bold;
 }
+
+.antd-radio .ant-radio-wrapper-checked .ant-radio-inner {
+  border-color: black;
+  background-color: black;
+}
