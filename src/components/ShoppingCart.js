@@ -8,7 +8,6 @@ import "../styles/ShoppingCart.css";
 const ShoppingCart = () => {
   const [quantity, setQuantity] = useState(1);
   const [quantityInCart, setQuantityInCart] = useState(0);
-
   const [selectedFulfilmentOption, setSelectedFulfilmentOption] = useState(101);
 
   const handleQuantity = (value) => {
