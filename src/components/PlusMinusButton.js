@@ -5,7 +5,7 @@ import { fulfillmentData, itemData } from "./MockData";
 const { Text } = Typography;
 
 const PlusMinusButton = ({ selectedFulfilmentOption, handleQuantity }) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const totalPrice = (quantity * itemData.retailPrice).toFixed(2);
 
@@ -38,7 +38,7 @@ const PlusMinusButton = ({ selectedFulfilmentOption, handleQuantity }) => {
             color="grey"
             variant="outlined"
             onClick={handleDecreaseQantity}
-            disabled={quantity <= 0}
+            disabled={quantity <= 1}
           >
             &minus;
           </Button>

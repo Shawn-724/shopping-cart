@@ -6,7 +6,7 @@ import { fulfillmentData, itemData } from "./MockData";
 import "../styles/ShoppingCart.css";
 
 const ShoppingCart = () => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [quantityInCart, setQuantityInCart] = useState(0);
 
   const [selectedFulfilmentOption, setSelectedFulfilmentOption] = useState(101);
@@ -32,6 +32,7 @@ const ShoppingCart = () => {
   };
 
   const handleUpdateCart = () => {
+    setQuantityInCart(quantity);
     console.log(
       "updateCart: \nsku:",
       `${itemData.sku},`,
@@ -60,10 +61,9 @@ const ShoppingCart = () => {
         variant="solid"
         onClick={quantityInCart ? handleUpdateCart : handleAddToCart}
         disabled={
-          (quantity === 0 && quantityInCart === 0) ||
-          (selectedFulfilmentOption === 101
+          selectedFulfilmentOption === 101
             ? quantity > fulfillmentData.inStockPickUpAvailableQty
-            : quantity > fulfillmentData.homeDeliveryAvailableQty)
+            : quantity > fulfillmentData.homeDeliveryAvailableQty
         }
       >
         {quantityInCart > 0 ? "UPDATE CART" : "ADD TO CART"}
